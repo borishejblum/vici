@@ -1,0 +1,94 @@
+pkgname <- "vici"
+source(file.path(R.home("share"), "R", "examples-header.R"))
+options(warn = 1)
+base::assign(".ExTimings", "vici-Ex.timings", pos = 'CheckExEnv')
+base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+base::assign(".format_ptime",
+function(x) {
+  if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
+  if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
+  options(OutDec = '.')
+  format(x[1L:3L], digits = 7L)
+},
+pos = 'CheckExEnv')
+
+### * </HEADER>
+library('vici')
+
+base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+cleanEx()
+nameEx("ICS_ex")
+### * ICS_ex
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: ICS_ex
+### Title: Toy data to upload in the app.
+### Aliases: ICS_ex
+### Keywords: data
+
+### ** Examples
+
+if(interactive()){
+set.seed(1382019)
+nsubj <- 20
+ntp <- 3
+nstim <- 3
+narm <- 3
+subj <- rep(rep(rep(1:nsubj, each = ntp), times = nstim), times = narm)
+stim <- rep(rep(c("NS", "S1", "S2"), each = nsubj*ntp), times = narm)
+tp <- rep(rep(c("D0", "D1", "D3"), times=nsubj*nstim), times = narm)
+a <- rep(c("Placebo", "A2", "A3"), each = nsubj*nstim*ntp)
+y1 <- round(abs(rnorm(n=nsubj*nstim*ntp*narm,m = 0.03, sd=0.06)) +
+  (stim=="S2" & a == "A2" & tp == "D1")*abs(rnorm(n=nsubj*nstim*ntp*narm, m = 0.05, sd=0.01)), 4)
+y2 <- round(abs(rnorm(n=nsubj*nstim*ntp*narm,m = 0.03, sd=0.06)) +
+  (stim=="S1" & a =="A3" & tp == "D3")*abs(rnorm(n=nsubj*nstim*ntp*narm, m = 0.1, sd=0.02)), 4)
+ICS_ex <- cbind.data.frame("Subject" = subj, "StimulationPool" = stim, "TimePoint" = tp,
+                           "Arm" = a, "Response1" = y1, "Response2" = y2)
+#View(ICS_ex)
+write.table(ICS_ex, file="Documents/GitHub/vici/data/ICS_ex.txt", sep="\t",
+row.names = FALSE, quote = FALSE)
+}
+
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("ICS_ex", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("run_app")
+### * run_app
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: run_app
+### Title: Launch VICI Shiny App
+### Aliases: run_app
+
+### ** Examples
+
+if(interactive()){
+vici::run_app()
+}
+
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("run_app", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+### * <FOOTER>
+###
+cleanEx()
+options(digits = 7L)
+base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+grDevices::dev.off()
+###
+### Local variables: ***
+### mode: outline-minor ***
+### outline-regexp: "\\(> \\)?### [*]+" ***
+### End: ***
+quit('no')

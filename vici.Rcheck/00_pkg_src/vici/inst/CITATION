@@ -1,0 +1,17 @@
+citHeader("To cite vici in publications use:")
+
+bibentry(
+  bibtype  = "Article",
+  title    = "Analyzing cellular immunogenicity in vaccine clinical trials: a new statistical method including non-specific responses for accurate estimation of vaccine efficacy",
+  author   = c(person("Edouard", "Lhomme"), person(c("Boris", "P"), "Hejblum"), person("Christine", "Lacabaratz"), person("Aur{\\'e}lie", "Wiedemann"), person("Jean-Daniel", "Leliv{\\`e}re"), person("Yves", "Levy"), person("Rodolphe", "Thi{\\'e}baut"), person("Laura", "Richert")),
+  journal  = "submitted",
+  year     = "2019",
+  volume   = "",
+  number   = "",
+  pages    = "",
+  url      = "",
+  note   = "R package version 0.5.3",
+  textVersion = paste("Lhomme E, Hejblum BP, Lacabaratz C, Wiedemann A, Lelièvre J-D, Levy Y, Thiébaut R, Richert L (2019). Analyzing cellular immunogenicity in vaccine clinical trials: a new statistical method including non-specific responses for accurate estimation of vaccine efficacy. Submitted.")
+)
+
+citFooter("We have invested a lot of time and efforts in implementing vici, ", "please cite it when using it for data analysis, research or any other purpose.")

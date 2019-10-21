@@ -10,20 +10,10 @@ BugReports: https://github.com/borishejblum/vici/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports:
-    cowplot,
-    DT,
-    ggplot2,
-    grDevices,
-    ggpubr,
-    nlme,
-    shiny,
-    stats,
-    tidyr,
-    utils,
-    covr,
-    testthat,
-    RSelenium,
-    golem,
-    future
+Imports: cowplot, DT, ggplot2, grDevices, ggpubr, nlme, shiny, stats,
+        tidyr, utils, covr, testthat, RSelenium, golem, future
 RoxygenNote: 6.1.1
+NeedsCompilation: no
+Packaged: 2019-10-21 12:55:32 UTC; travis
+Author: Boris Hejblum [cre, aut]
+Maintainer: Boris Hejblum <boris.hejblum@u-bordeaux.fr>

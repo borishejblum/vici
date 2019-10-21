@@ -1,0 +1,78 @@
+
+R version 3.6.1 (2017-01-27) -- "Action of the Toes"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(testthat)
+> library(vici)
+> 
+> test_check("vici")
+[1] "Connecting to remote server"
+$applicationCacheEnabled
+[1] TRUE
+
+$rotatable
+[1] FALSE
+
+$handlesAlerts
+[1] TRUE
+
+$databaseEnabled
+[1] TRUE
+
+$version
+[1] "45.0.2"
+
+$platform
+[1] "LINUX"
+
+$nativeEvents
+[1] FALSE
+
+$acceptSslCerts
+[1] TRUE
+
+$webdriver.remote.sessionid
+[1] "9ec646f2-a6ba-4c4b-a0a9-8a2eddf55496"
+
+$webStorageEnabled
+[1] TRUE
+
+$locationContextEnabled
+[1] TRUE
+
+$browserName
+[1] "firefox"
+
+$takesScreenshot
+[1] TRUE
+
+$javascriptEnabled
+[1] TRUE
+
+$cssSelectorsEnabled
+[1] TRUE
+
+$id
+[1] "9ec646f2-a6ba-4c4b-a0a9-8a2eddf55496"
+
+url => https://www.google.com/?gws_rd=ssl 
+page title =>function (input, output, session)  
+══ testthat results  ═══════════════════════════════════════════════════════════
+[ OK: 4 | SKIPPED: 3 | WARNINGS: 0 | FAILED: 0 ]
+> 
+> proc.time()
+   user  system elapsed 
+  1.738   0.070   5.080 
