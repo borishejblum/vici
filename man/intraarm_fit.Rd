@@ -4,7 +4,7 @@
 \alias{intraarm_fit}
 \title{Fitting GLS For Intra-Arm Setting}
 \usage{
-intraarm_fit(transformed_data, tested_time, input)
+intraarm_fit(transformed_data, tested_time, input, resp)
 }
 \description{
 Fitting GLS For Intra-Arm Setting

@@ -3,5 +3,9 @@ heatmap_vici	heatmap_vici
 ICS_ex	ICS_ex
 interarm_fit	interarm_fit
 intraarm_fit	intraarm_fit
+mod_modelfit_server	mod_modelfit
+mod_modelfit_ui	mod_modelfit
+mod_settings_pan_server	mod_settings_pan
+mod_settings_pan_ui	mod_settings_pan
 myDownloadHandlerForPlots	myDownloadHandlerForPlots
 run_app	run_app

@@ -25,5 +25,7 @@ Imports:
     testthat,
     RSelenium,
     golem,
-    future
+    future,
+    pkgload,
+    processx
 RoxygenNote: 6.1.1

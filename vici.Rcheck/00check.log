@@ -2,7 +2,7 @@
 * using R version 3.6.1 (2017-01-27)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
-* using options ‘--no-manual --no-build-vignettes --as-cran’
+* using options ‘--no-tests --no-manual --no-build-vignettes --as-cran’
 * checking for file ‘vici/DESCRIPTION’ ... OK
 * this is package ‘vici’ version ‘0.5.3’
 * package encoding: UTF-8
@@ -52,9 +52,7 @@ Non-standard file/directory found at top level:
 * checking data for non-ASCII characters ... OK
 * checking data for ASCII and uncompressed saves ... OK
 * checking examples ... [1s/1s] OK
-* checking for unstated dependencies in ‘tests’ ... WARNING
-'::' or ':::' import not declared from: ‘processx’
-* checking tests ... [2s/5s] OK
-  Running ‘testthat.R’
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ... SKIPPED
 * DONE
-Status: 1 WARNING, 1 NOTE
+Status: 1 NOTE

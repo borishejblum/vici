@@ -3,8 +3,10 @@
 #'
 #' @keywords internal
 #' @importFrom stats na.omit
-intraarm_fit <- function(transformed_data, tested_time, input){
+intraarm_fit <- function(transformed_data, tested_time, input,resp){
 
+  #browser()
+  
   res_tab <- NULL
   res_lik <- NULL
   res_error <- NULL
@@ -38,13 +40,13 @@ intraarm_fit <- function(transformed_data, tested_time, input){
     res_nparam <- renderText({paste0("<b>Number of estimated model parameters:</b> ", nrow(res_tab) + length(sigmas))})
 
     # pretty coef names
-    rownames(res_tab)[1] <- paste0("Vaccine effect on response in reference stimulation ", input$selectRefStim,
+    rownames(res_tab)[1] <- paste0(as.character(resp), " : Vaccine effect on response in reference stimulation ", input$selectRefStim,
                                    " at ", tested_time, " compared to baseline ", input$selectRefTime)
     nstim <- nlevels(transformed_data$stim)
     for(i in 1:(nstim-1)){
-      rownames(res_tab)[1 + i] <- paste0("Vaccine effect on response in stimulation ", levels(transformed_data$stim)[1 + i],
+      rownames(res_tab)[1 + i] <- paste0(as.character(resp), " : Vaccine effect on response in stimulation ", levels(transformed_data$stim)[1 + i],
                                          " at ", tested_time, " compared to baseline ", input$selectRefTime)
-      rownames(res_tab)[nstim + i] <- paste0("Effect of reference stimulation ", input$selectRefStim,
+      rownames(res_tab)[nstim + i] <- paste0(as.character(resp), " : Effect of reference stimulation ", input$selectRefStim,
                                              " on response in stimulation ", levels(transformed_data$stim)[1 + i],
                                              "  at ", tested_time, " compared to baseline ", input$selectRefTime)
     }

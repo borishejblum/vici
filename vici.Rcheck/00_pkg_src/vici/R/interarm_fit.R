@@ -3,8 +3,8 @@
 #'
 #' @keywords internal
 #' @importFrom stats na.omit
-interarm_fit <- function(transformed_data, input){
-
+interarm_fit <- function(transformed_data, input,resp){
+  #browser()
   res_tab <- NULL
   res_lik <- NULL
   res_error <- NULL
@@ -39,23 +39,23 @@ interarm_fit <- function(transformed_data, input){
     res_nparam <- renderText({paste0("<b>Number of estimated model parameters:</b> ", nrow(res_tab) + length(sigmas))})
 
     # pretty coef names
-    rownames(res_tab)[1] <- paste0("Average response in reference stimulation ", input$selectRefStim,
+    rownames(res_tab)[1] <- paste0(as.character(resp), " : Average response in reference stimulation ", input$selectRefStim,
                                    " in reference arm ", input$selectRefArm)
     nstim <- nlevels(transformed_data$stim)
     for(i in 1:(nstim-1)){
-      rownames(res_tab)[1 + i] <- paste0("Average response in stimulation ", levels(transformed_data$stim)[1 + i],
+      rownames(res_tab)[1 + i] <- paste0(as.character(resp), " : Average response in stimulation ", levels(transformed_data$stim)[1 + i],
                                          " in reference arm ", input$selectRefArm)
     }
     for(i in 1:(nstim-1)){
-      rownames(res_tab)[nstim + i] <- paste0("Effect of reference stimulation ", input$selectRefStim, " on response in stimulation ",
+      rownames(res_tab)[nstim + i] <- paste0(as.character(resp), " : Effect of reference stimulation ", input$selectRefStim, " on response in stimulation ",
                                              levels(transformed_data$stim)[i + 1])
     }
     narm <- nlevels(transformed_data$arm)
     for(i in 1:(narm-1)){
-      rownames(res_tab)[nstim*2-1 + 1 + (i-1)*nstim] <- paste0("Effect of arm ", levels(transformed_data$arm)[1 + i],
+      rownames(res_tab)[nstim*2-1 + 1 + (i-1)*nstim] <- paste0(as.character(resp), " : Effect of arm ", levels(transformed_data$arm)[1 + i],
                                                                " on response in reference stimulation ", input$selectRefStim)
       for(j in 1:(nstim-1)){
-        rownames(res_tab)[nstim*2-1 + nstim*(i-1) + j + 1] <- paste0("Effect of arm ", levels(transformed_data$arm)[1 + i],
+        rownames(res_tab)[nstim*2-1 + nstim*(i-1) + j + 1] <- paste0(as.character(resp), " : Effect of arm ", levels(transformed_data$arm)[1 + i],
                                                                      " on response in stimulation ", levels(transformed_data$stim)[1 + j])
       }
     }

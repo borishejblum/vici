@@ -35,10 +35,11 @@ r_packages:
 - covr
 - testthat
 - RSelenium
+- devtools
 
 
 r_build_args: "--no-manual --no-resave-data"
-r_check_args: "--as-cran --no-build-vignettes --no-manual --timings "
+r_check_args: "--as-cran --no-build-vignettes --no-manual --timings --no-tests"
 
 env:
   global:
@@ -64,7 +65,7 @@ after_success:
 # - Rscript -e 'library(vici)'
 # - Rscript -e 'vici::run_app()'&
 # - Rscript -e 'testthat::test_dir("tests")'
-  - test $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'covr::codecov()'
+# - test $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'covr::codecov()'
   - docker stop $(docker ps -a -q)
 
 
@@ -72,7 +73,7 @@ jobs:
   include:
     - stage : "Test"
       name : "TestThat"
-      script : Rscript -e 'testthat::test_dir("tests")'
+      script : test $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'devtools::install(); testthat::test_dir("tests")'
     - stage : "deploy"
       deploy:
         provider: pages

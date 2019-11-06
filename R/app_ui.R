@@ -1,8 +1,7 @@
 #' @import shiny
 app_ui <- function() {
   fluidPage(
-    titlePanel("VICI: accurate estimation of Vaccine Induced Cellular Immunogenicity with bivariate modeling",
-               windowTitle = "VICI"),
+    titlePanel("VICI: accurate estimation of Vaccine Induced Cellular Immunogenicity with bivariate modeling",windowTitle = "VICI"),
     h6("v0.5.3"),
     h5(),
 
@@ -17,145 +16,9 @@ app_ui <- function() {
 
 
     sidebarLayout(
-      sidebarPanel(
-        # Input: Select a file ----
-        h3("Data input"),
-        fileInput("datafile", label = "Choose a CSV/TXT file to import",
-                  multiple = FALSE,
-                  accept = c("text/csv",
-                             "text/comma-separated-values,text/plain",
-                             ".csv")),
+      mod_settings_pan_ui("settings_pan_ui_1"),
 
-        # Input: Checkbox if file has header ----
-        checkboxInput("header", "Header", TRUE),
-
-        # Input: Select separator ----
-        radioButtons("sep", "Separator",
-                     choices = c(Comma = ",",
-                                 Semicolon = ";",
-                                 Tab = "\t"),
-                     selected = "\t"),
-
-        # Input: Select quotes ----
-        # radioButtons("quote", "Quote",
-        #              choices = c(None = "",
-        #                          "Double Quote" = '"',
-        #                          "Single Quote" = "'"),
-        #              selected = '"'),
-
-        # Horizontal line ----
-        # tags$hr(),
-
-        h3("Input parameters"),
-        selectInput("selectModel", label = "Model choice",
-                    choices = list("inter-arm" = 1, "intra-arm" = 2),
-                    selected = 1),
-
-        h4("Variable specification"),
-        selectizeInput("selectSubject", label = "Select the column that identifies the subject ID",
-                       choices = c(Choose = "", NULL),
-                       options = list(placeholder = 'Please select a column name below')
-        ),
-
-        selectizeInput("selectResponse", label = "Select the column(s) that identify ICS response",
-                       choices = c(Choose = "", NULL),
-                       options = list(placeholder = 'Please select a column name below'),
-                       multiple = TRUE
-        ),
-
-        selectizeInput("selectStim", label = "Select the column that identifies the stimulation",
-                       choices = c(Choose = "", NULL),
-                       options = list(placeholder = 'Please select a column name below')
-        ),
-        conditionalPanel(
-          condition = "input.selectStim != '' & !output.stimisfactor",
-          verbatimTextOutput("warningstimisfactor")
-        ),
-        conditionalPanel(
-          condition = "input.selectStim != '' & output.stimisfactor",
-          selectizeInput("selectRefStim", label = "Select the value that identifies background samples",
-                         choices =c(Choose = "", NULL))
-        ),
-
-        conditionalPanel(
-          condition = "input.selectModel == 1",
-          selectizeInput("selectArm", label = "Select the column that identifies the arm",
-                         choices = c(Choose = "", NULL),
-                         options = list(placeholder = 'Please select a column name below')
-          )
-        ),
-        conditionalPanel(
-          condition = "input.selectModel == 1 & input.selectArm != '' & !output.armisfactor & output.warningarmisfactor != null",
-          verbatimTextOutput("warningarmisfactor")
-        ),
-        conditionalPanel(
-          condition = "input.selectModel == 1 & input.selectArm != '' & output.armisfactor",
-          selectizeInput("selectRefArm", label = "Select the value that identifies the reference arm",
-                         choices =c(Choose = "", NULL))
-        ),
-
-        conditionalPanel(
-          condition = "input.selectModel == 1",
-          selectizeInput("selectTime2", label = "If several time-points (optional), please select the column that identifies the observation's time-point",
-                         choices = c(Choose = "", NULL),
-                         options = list(placeholder = 'Please select a column name below')
-          )
-        ),
-        conditionalPanel(
-          condition = "input.selectModel == 1 & input.selectTime2 != '' ",
-          selectizeInput("selectRefTime2", label = "Select the time-point to analyze",
-                         choices =c(Choose = "", NULL))
-        ),
-
-        conditionalPanel(
-          condition = "input.selectModel == 2",
-          selectizeInput("selectTime", label = "Select the column that identifies the time-points",
-                         choices = c(Choose = "", NULL),
-                         options = list(placeholder = 'Please select a column name below')
-          )
-        ),
-        conditionalPanel(
-          condition = "input.selectModel == 2 & input.selectTime != ''",
-          selectizeInput("selectRefTime", label = "Select the value that identifies the reference time-point",
-                         choices =c(Choose = "", NULL))
-        ),
-
-        conditionalPanel(
-          condition = "input.selectModel == 2",
-          selectizeInput("selectArm2", label = "If several arms (optional) please select the column that identifies the observation's arm",
-                         choices = c(Choose = "", NULL),
-                         options = list(placeholder = 'Please select a column name below')
-          )
-        ),
-        conditionalPanel(
-          condition = "input.selectModel == 2 & input.selectArm2 != '' & !output.armisfactor2 & output.warningarm2isfactor != null",
-          verbatimTextOutput("warningarm2isfactor")
-        ),
-        conditionalPanel(
-          condition = "input.selectModel == 2 & input.selectArm2 != '' & output.arm2isfactor",
-          selectizeInput("selectRefArm2", label = "Select the arm to analyze",
-                         choices =c(Choose = "", NULL))
-        ),
-
-
-        tags$hr(),
-        h3("Run analysis"),
-        actionButton("modelfit", label = "Fit model",
-                     class = "btn-primary"),
-
-        h3(),
-        tags$hr(),
-        h3("Example data"),
-        fluidRow(
-          actionButton("loadExample", label = "load example data")
-        ),
-        fluidRow(
-          downloadButton("downloadExData", label = "download example data")
-        )
-      ),
-
-      mainPanel(
-        tabsetPanel(type = "tabs", id="inTabset",
+      mainPanel(tabsetPanel(type = "tabs", id="inTabset",
                     tabPanel("Results", value="resTab",
                              # fluidRow(
                              #   column(8,
