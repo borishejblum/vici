@@ -2,7 +2,7 @@
 app_ui <- function() {
   fluidPage(
     titlePanel("VICI: accurate estimation of Vaccine Induced Cellular Immunogenicity with bivariate modeling",windowTitle = "VICI"),
-    h6("v0.5.3"),
+    h6("v0.5.4"),
     h5(),
 
     shiny::actionLink(inputId='github_code', label="Source code",

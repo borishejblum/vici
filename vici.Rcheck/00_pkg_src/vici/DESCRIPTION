@@ -1,6 +1,6 @@
 Package: vici
 Title: Vaccine Induced Cellular Immunogenicity with Bivariate Modeling
-Version: 0.5.3
+Version: 0.5.4
 Date: 2019-08-21
 Authors@R: person('Boris', 'Hejblum', email = 'boris.hejblum@u-bordeaux.fr', role = c('cre', 'aut'))
 Description: A shiny app for accurate estimation of vaccine induced immunogenicity 
@@ -15,6 +15,6 @@ Imports: cowplot, DT, ggplot2, grDevices, ggpubr, nlme, shiny, stats,
         pkgload, processx
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2019-11-08 09:19:01 UTC; travis
+Packaged: 2019-11-08 09:26:40 UTC; travis
 Author: Boris Hejblum [cre, aut]
 Maintainer: Boris Hejblum <boris.hejblum@u-bordeaux.fr>
