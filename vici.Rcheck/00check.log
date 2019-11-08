@@ -15,7 +15,7 @@
 * checking for portable file names ... OK
 * checking for sufficient/correct file permissions ... OK
 * checking serialization versions ... OK
-* checking whether package ‘vici’ can be installed ... [4s/4s] OK
+* checking whether package ‘vici’ can be installed ... [5s/5s] OK
 * checking installed package size ... OK
 * checking package directory ... OK
 * checking for future file timestamps ... OK
@@ -38,7 +38,7 @@ Non-standard file/directory found at top level:
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
-* checking R code for possible problems ... [5s/5s] OK
+* checking R code for possible problems ... [7s/7s] OK
 * checking Rd files ... OK
 * checking Rd metadata ... OK
 * checking Rd line widths ... OK

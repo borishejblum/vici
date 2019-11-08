@@ -64,7 +64,7 @@ before_install:
 after_success:
 # - Rscript -e 'library(vici)'
 # - Rscript -e 'vici::run_app()'&
-# - Rscript -e 'testthat::test_dir("tests")'
+# - Rscript -e 'covr::codecov()'
 # - test $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'covr::codecov()'
   - docker stop $(docker ps -a -q)
 
