@@ -24,6 +24,7 @@ waitFor <- function(how,id){
   }
   else{
     stop(paste0(id," not found \n"))
+    #cat(paste0(id," not found \n"))
   }
 }
 
@@ -31,51 +32,28 @@ wd <- getwd()
 
 #Uncomment this for local test
 
-# rD <- RSelenium::rsDriver(
-#   browser = "firefox",
-#   extraCapabilities = list(
-#     "moz:firefoxOptions" = list(
-#       args = list()#('--headless')
-#     )
-#   )
-# )
 
-remDr <-  remoteDriver(browserName = "firefox",port=4455L)#Use this for local test =>  rD$client 
-remDr$open(silent = FALSE)
-remDr$setTimeout(type = "page load", milliseconds = 5000)
-appURL <- "http://127.0.0.1:8080"
-#app %<-% vici::run_app()
+remDr <- RSelenium::remoteDriver(remoteServerAddr = "localhost",
+                                 port = 4445L,
+                                 browserName = "firefox")
+remDr$open()
+appURL <- "http://10.0.75.1:3838"
+
+
 
 
 test_that("can connect to app", {
-  #skip_on_cran()
-  x <- processx::process$new( 
-    "R", 
-    c(
-      "-e", 
-      "vici::run_app()"
-    )
-  )
-  Sys.sleep(5)
-  remDr$navigate(appURL)
-  #sys.wa
+  remDr$navigate("http://shiny:3838")
   webElem <- waitFor("xpath","/html/body/div[2]/h2")#remDr$findElement(using = "xpath", value = "/html/body/div[2]/h2")
   textWebElem <- webElem$getElementText()
   expect_equal(as.character(textWebElem), "VICI: accurate estimation of Vaccine Induced Cellular Immunogenicity with bivariate modeling")
-  x$kill()
+  
 })
 
 test_that("Scénario standard example Data",{
-  x <- processx::process$new( 
-    "R", 
-    c(
-      "-e", 
-      "vici::run_app()"
-    )
-  )
-  Sys.sleep(5)
-  remDr$navigate(appURL)
-  loadButton <- remDr$findElement(using = "id", value = "settings_pan_ui_1-loadExample")
+
+  remDr$navigate("http://shiny:3838")
+  loadButton <- waitFor("id", "settings_pan_ui_1-loadExample")
   loadButton$clickElement()
   
   Arm <- waitFor("xpath","/html/body/div[2]/div/div[2]/div/div/div[2]/div[2]/div/table/tbody/tr[1]/td[5]")#remDr$findElement(using = "xpath", value = "/html/body/div[2]/div/div[2]/div/div/div[2]/div[2]/div/table/tbody/tr[1]/td[5]")
@@ -99,18 +77,10 @@ test_that("Scénario standard example Data",{
   expect_equal(as.character(standardError2$getElementText()),"0.01200")
   pValue2 <- remDr$findElement(using = "xpath", value = "/html/body/div[2]/div/div[2]/div/div/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[2]/table/tbody/tr[11]/td[4]")
   expect_equal(as.character(pValue2$getElementText()),"0.72415")
-  x$kill()
+ 
 })
 
 # test_that("Upload file and intra_Fit",{
-#   x <- processx::process$new( 
-#     "R", 
-#     c(
-#       "-e", 
-#       "vici::run_app()"
-#     )
-#   )
-#   Sys.sleep(5)
 #   remDr$navigate(appURL)
 #   
 #   # uploadBtn <- waitFor("css",".btn-file")
@@ -172,7 +142,6 @@ test_that("Scénario standard example Data",{
 # 
 #   fit <- remDr$findElement(using = "id", value = "modelfit_ui_1-fit")
 #   fit$clickElement()
-#   x$kill()
 # })
 
 remDr$close()

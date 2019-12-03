@@ -11,8 +11,13 @@ RUN R -e 'remotes::install_cran("tidyr")'
 RUN R -e 'remotes::install_cran("covr")'
 RUN R -e 'remotes::install_cran("testthat")'
 RUN R -e 'remotes::install_cran("RSelenium")'
-RUN R -e 'remotes::install_cran("golem")'
+RUN R -e 'remotes::install_cran("future")'
+RUN R -e 'remotes::install_cran("pkgload")'
+RUN R -e 'remotes::install_cran("processx")'
 COPY vici_*.tar.gz /app.tar.gz
+
+COPY Rprofile.site /usr/lib/R/etc/
+
 RUN R -e 'remotes::install_local("/app.tar.gz")'
-EXPOSE 8080
-CMD R -e "options('shiny.port'=8080,shiny.host='0.0.0.0');vici::run_app()"
+EXPOSE 3838
+#CMD  ["R", "-e  vici::run_app()"]

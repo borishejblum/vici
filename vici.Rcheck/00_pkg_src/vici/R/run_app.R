@@ -10,6 +10,6 @@
 #' @export
 #' @importFrom shiny runApp
 run_app <- function(...) {
-  shiny::runApp(system.file("app", package = "vici"),port=8080 ,...)
+  shiny::runApp(system.file("app", package = "vici"),port=3838 ,host = "0.0.0.0")
 }
 

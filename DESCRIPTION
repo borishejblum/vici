@@ -24,7 +24,6 @@ Imports:
     covr,
     testthat,
     RSelenium,
-    golem,
     future,
     pkgload,
     processx

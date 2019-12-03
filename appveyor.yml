@@ -7,6 +7,9 @@ init:
         Invoke-WebRequest http://raw.github.com/krlmlr/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
         Import-Module '..\appveyor-tool.ps1'
 
+services:
+- docker
+
 install:
   ps: Bootstrap
 
@@ -31,7 +34,10 @@ build_script:
   - travis-tool.sh install_deps
 
 test_script:
+  - docker pull selenium/standalone-firefox:2.53.0
+  - docker run -d -p 127.0.0.1:4455:4444 selenium/standalone-firefox:2.53.0
   - travis-tool.sh run_tests
+  - docker stop $(docker ps -a -q)
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*

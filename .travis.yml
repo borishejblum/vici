@@ -17,12 +17,6 @@ matrix:
     - os: linux
       r: devel
 
-    #- os: osx
-    #  r: release
-
-    #- os: osx
-    #  r: devel
-
 r_packages:
 - cowplot
 - DT
@@ -31,7 +25,6 @@ r_packages:
 - nlme
 - shiny
 - tidyr
-- golem
 - covr
 - testthat
 - RSelenium
@@ -49,31 +42,26 @@ env:
 addons:
   firefox: latest
 
-before_install:
-  - docker pull selenium/standalone-firefox:2.53.0
-  - docker run -d -p 127.0.0.1:4455:4444 selenium/standalone-firefox:2.53.0
-#  - docker build -t rocker/tidyverse .
-#  - docker run -d -p 127.0.0.1:80:4567 rocker/tidyverse /bin/sh -c "cd /root/tidyverse; bundle exec foreman start;"
-#  - docker ps -a
-#  - docker run rocker/tidyverse /bin/sh -c "cd /root/tidyverse; bundle exec rake test"
-
-
-#script:
-#  - R -f inst/app/tests/run_shinyTest.R
-# only report coverage for the release version
-after_success:
-# - Rscript -e 'library(vici)'
-# - Rscript -e 'vici::run_app()'&
-# - Rscript -e 'covr::codecov()'
-# - test $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'covr::codecov()'
-  - docker stop $(docker ps -a -q)
-
+stages:
+  - "Build"
+  - "Test"
+  - "deploy"
 
 jobs:
   include:
+    - stage : "Build"
     - stage : "Test"
       name : "TestThat"
-      script : test $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'devtools::install(); testthat::test_dir("tests")'
+      before_script :
+        - docker pull selenium/standalone-firefox:2.53.0
+        - Rscript -e 'devtools::build()'
+        - mv ../vici_0.5.4.tar.gz .
+        - docker build -t shiny_proxy .
+        - docker run -d -p 3838:3838 --name shiny  shiny_proxy R -e 'vici::run_app()'
+        - docker run -d -p 4445:4444 --name selenium --link shiny selenium/standalone-firefox:2.53.0
+      script : test $TRAVIS_R_VERSION_STRING = 'release' && Rscript -e 'covr::codecov()'#'devtools::install(); covr::codecov()'
+      after_success:
+        - docker stop $(docker ps -a -q)
     - stage : "deploy"
       deploy:
         provider: pages
