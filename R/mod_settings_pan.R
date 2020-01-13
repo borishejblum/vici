@@ -22,7 +22,7 @@ mod_settings_pan_ui <- function(id){
       # Input: Select a file ----
       h3("Data input"),
       fileInput(ns("datafile"), label = "Choose a CSV/TXT file to import",
-                multiple = FALSE,
+                #multiple = FALSE,
                 accept = c("text/csv",
                            "text/comma-separated-values,text/plain",
                            ".csv")),

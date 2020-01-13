@@ -15,6 +15,7 @@
 #'@importFrom grDevices dev.off png
 
 myDownloadHandlerForPlots <- function(name, plot_obj, outputArgs = list()){
+  #browser()
   downloadHandler(
     filename = name,
     content = function(file){

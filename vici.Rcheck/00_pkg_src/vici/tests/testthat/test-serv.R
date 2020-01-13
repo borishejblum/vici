@@ -1,6 +1,5 @@
 context("test serv method")
 
-library(golem)
 library(vici)
 
 test_that("load example data", {

@@ -20,4 +20,4 @@ COPY Rprofile.site /usr/lib/R/etc/
 
 RUN R -e 'remotes::install_local("/app.tar.gz")'
 EXPOSE 3838
-#CMD  ["R", "-e  vici::run_app()"]
+CMD  ["R", "-e  vici::run_app()"]

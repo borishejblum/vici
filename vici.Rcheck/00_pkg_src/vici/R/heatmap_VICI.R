@@ -16,7 +16,7 @@
 #'@import ggplot2
 
 heatmap_vici <- function(res_2plot, inter=TRUE, baseline=NULL){
-
+  #browser()
   if(inter){
     p <- ggplot(data = res_2plot) +
       geom_tile(aes_string(x="Stimulation", y="response", fill="pvalue"), color="white") +

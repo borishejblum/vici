@@ -11,10 +11,9 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: cowplot, DT, ggplot2, grDevices, ggpubr, nlme, shiny, stats,
-        tidyr, utils, covr, testthat, RSelenium, future, pkgload,
-        processx
+        tidyr, utils, covr, testthat, RSelenium, pkgload,
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2019-12-03 10:27:31 UTC; travis
+Packaged: 2020-01-13 10:42:01 UTC; travis
 Author: Boris Hejblum [cre, aut]
 Maintainer: Boris Hejblum <boris.hejblum@u-bordeaux.fr>

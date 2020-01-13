@@ -24,7 +24,5 @@ Imports:
     covr,
     testthat,
     RSelenium,
-    future,
     pkgload,
-    processx
 RoxygenNote: 6.1.1

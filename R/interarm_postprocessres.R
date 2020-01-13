@@ -1,4 +1,7 @@
 interarm_postprocessres <- function(data_df, fit_res){
+  
+  #browser()
+  
   m2resloglik <- -2*fit_res$mgls$logLik
   s_mgls <- summary(fit_res$mgls)
   aic <- s_mgls$AIC

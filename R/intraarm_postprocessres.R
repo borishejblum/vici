@@ -1,4 +1,7 @@
 intraarm_postprocessres <- function(data_df, fit_res){
+  
+  #browser()
+  
   m2resloglik <- sapply(fit_res, function(x){-2*x$mgls$logLik})
   s_mgls <- lapply(fit_res, function(x){summary(x$mgls)})
   aic <- sapply(s_mgls, "[[", "AIC")

@@ -63,6 +63,15 @@ app_server <- function(input, output, session) {
     }
   )
 
+  observe({
+    query <- parseQueryString(session$clientData$url_search)
+    if (!is.null(query[['test']])) {
+      #updateSliderInput(session, "bins", value = query[['bins']])
+      cat("test => ")
+      cat(query[['test']],"\n")
+      
+    }
+  })
   
   #Module return input so sub module can access it
   inpt <- callModule(module = mod_settings_pan_server, id = "settings_pan_ui_1",data = data,parent = session)

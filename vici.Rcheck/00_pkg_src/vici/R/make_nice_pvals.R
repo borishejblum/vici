@@ -1,4 +1,7 @@
 make_nice_pvals <- function(res_2plot, data_df, auxvar = "arm"){
+  
+  #browser()
+  
   data_df$stim <- as.factor(as.numeric(data_df$stim))
   pval_2plot <- res_2plot
   naux <- nlevels(data_df[, auxvar])
