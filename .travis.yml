@@ -46,6 +46,7 @@ stages:
   - "Build"
   - "Test"
   - "deploy"
+  - "Merge"
 
 jobs:
   include:
@@ -71,3 +72,6 @@ jobs:
         target_branch: test_deploy
         on:
           branch: automTest
+    - stage : "Merge"
+      if : tag = deploy
+      script : git request-pull master test_deploy
