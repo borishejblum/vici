@@ -75,4 +75,4 @@ jobs:
     - stage : "Merge"
       on :
         tags : true
-      script : git request-pull master test_deploy
+      script : git request-pull origin/master origin/test_deploy
