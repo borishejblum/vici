@@ -73,5 +73,6 @@ jobs:
         on:
           branch: automTest
     - stage : "Merge"
-      if : tag = deploy
+      on :
+        tags : true
       script : git request-pull master test_deploy

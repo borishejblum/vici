@@ -14,7 +14,7 @@ Imports: cowplot, DT, ggplot2, grDevices, ggpubr, nlme, shiny, stats,
         tidyr, utils, covr, testthat, RSelenium, pkgload,
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2020-01-14 12:37:13 UTC; travis
+Packaged: 2020-01-14 13:05:03 UTC; travis
 Author: Boris Hejblum [cre, aut]
 Maintainer: Boris Hejblum <boris.hejblum@u-bordeaux.fr>
-Built: R 3.6.2; ; 2020-01-14 12:37:15 UTC; unix
+Built: R 3.6.2; ; 2020-01-14 13:05:05 UTC; unix
